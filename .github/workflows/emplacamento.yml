@@ -1,0 +1,27 @@
+
+name: Emplacamento Diario
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # Executa todo dia às 07h BRT (10h UTC)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install pandas openpyxl requests
+      - name: Run script
+        run: python emplacamento.py
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: emplacamento
+          path: output/
