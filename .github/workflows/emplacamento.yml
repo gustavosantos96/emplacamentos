@@ -1,4 +1,4 @@
-name: Emplacamento Diario
+name: Emplacamento Diario Email
 
 on:
   schedule:
@@ -11,16 +11,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
       - name: Install dependencies
         run: pip install pandas openpyxl requests
+
       - name: Run script
-        run: python emplacamento.py
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: emplacamento
-          path: output/
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        run: python emplacamento_email.py
