@@ -13,9 +13,11 @@ r.raise_for_status()
 data = [line.split(";") for line in r.text.strip().split("\n")]
 df = pd.DataFrame(data[1:], columns=data[0] if len(data) > 1 else None)
 
-dias = ['domingo','segunda','terca','quarta','quinta','sexta','sabado']
-nome_arquivo = f'Emplacamento_{dias[datetime.now().weekday()]}.xlsx'
+now = datetime.now()
+data_format = now.strftime("%d.%m.%Y")
+nome_arquivo = f'Emplacamento_{data_format}.xlsx'
 df.to_excel(nome_arquivo, index=False)
+
 
 # Configurações do email
 smtp_server = "smtp.gmail.com"
@@ -26,7 +28,7 @@ email_to = "gustavo.santos@daftrucks.com"  # Ou use outro destinatário, conform
 
 # Montar email
 msg = EmailMessage()
-msg['Subject'] = f"Emplacamento Diário - {dias[datetime.now().weekday()]}"
+msg['Subject'] = f"Emplacamento Diário FENABRAVE - {now.strftime("%d/%m/%Y")}"
 msg['From'] = email_user
 msg['To'] = email_to
 msg.set_content("Planilha de emplacamento em anexo. Envio automático.")
