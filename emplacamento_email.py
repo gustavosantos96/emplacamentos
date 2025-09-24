@@ -18,7 +18,7 @@ nome_arquivo = f'Emplacamento_{dias[datetime.now().weekday()]}.xlsx'
 df.to_excel(nome_arquivo, index=False)
 
 # Configurações do email
-smtp_server = "smtp.office365.com"
+smtp_server = "smtp.gmail.com"
 smtp_port = 587
 email_user = os.environ['EMAIL_USER']
 email_pass = os.environ['EMAIL_PASS']
