@@ -28,7 +28,7 @@ email_to = "gustavo.santos@daftrucks.com"  # Ou use outro destinatário, conform
 
 # Montar email
 msg = EmailMessage()
-msg['Subject'] = f"Emplacamento Diário FENABRAVE - {now.strftime("%d/%m/%Y")}"
+msg['Subject'] = f"Emplacamento Diário FENABRAVE - {now.strftime('%d/%m/%Y')}"
 msg['From'] = email_user
 msg['To'] = email_to
 msg.set_content("Planilha de emplacamento em anexo. Envio automático.")
