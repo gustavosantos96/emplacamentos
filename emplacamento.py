@@ -20,8 +20,8 @@ df.to_excel(nome_arquivo, index=False)
 # Configurações do email
 smtp_server = "smtp.office365.com"
 smtp_port = 587
-email_user = "gustavo.santos@daftrucks.com"
-email_pass = "Pontagrossa@2025v3"
+email_user = os.environ['EMAIL_USER']
+email_pass = os.environ['EMAIL_PASS']
 email_to = "gustavo.santos@daftrucks.com"  # Ou use outro destinatário, conforme o fluxo do Power Automate
 
 # Montar email
