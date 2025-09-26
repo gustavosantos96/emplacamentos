@@ -1,7 +1,7 @@
 import pandas as pd
 import requests
 import smtplib
-from datetime import datetime
+from datetime import datetime, timedelta
 from email.message import EmailMessage
 import os
 
@@ -13,7 +13,7 @@ r.raise_for_status()
 data = [line.split(";") for line in r.text.strip().split("\n")]
 df = pd.DataFrame(data[1:], columns=data[0] if len(data) > 1 else None)
 
-now = datetime.now()
+now = datetime.today() - timedelta(days=1)
 data_format = now.strftime("%d-%m-%Y")
 nome_arquivo = f'Emplacamento_{data_format}.xlsx'
 df.to_excel(nome_arquivo, index=False)
